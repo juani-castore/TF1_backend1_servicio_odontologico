@@ -23,7 +23,7 @@ public class PacienteController {
 
     // mo funciona, a chequear
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTO> buscarPaciente(@PathVariable Long id){
+    public ResponseEntity<PacienteDTO> buscarPaciente(@PathVariable Long id) throws Exception{
         return ResponseEntity.ok(pacienteService.buscarPaciente(id));
     }
 
@@ -34,7 +34,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarPaciente(@PathVariable Long id){
+    public void eliminarPaciente(@PathVariable Long id) throws Exception{
         pacienteService.eliminarPaciente(id);
     }
 

@@ -1,6 +1,7 @@
 package com.dh.clinicaOdontologica.services;
 
 import com.dh.clinicaOdontologica.dto.TurnoDTO;
+import com.dh.clinicaOdontologica.exceptions.NotFoundException;
 import com.dh.clinicaOdontologica.models.Turno;
 import com.dh.clinicaOdontologica.repositories.TurnoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,11 +30,15 @@ public class TurnoService {
     public Turno actualizarTurno(Turno turno){
         return guardarTurno(turno);
     }
-    public void eliminarTurno(Long id){
+    public void eliminarTurno(Long id) throws NotFoundException{
+        if (turnoRepository.findById(id).isEmpty())
+            throw new NotFoundException("este turno nunca fue asignado previamente, id: "+ id.toString());
         turnoRepository.deleteById(id);
     }
-    public TurnoDTO buscarTurno(Long id){
+    public TurnoDTO buscarTurno(Long id) throws NotFoundException {
         Turno turno = turnoRepository.findById(id).orElse(null);
+        if (turno == null)
+            throw new NotFoundException("este turno no ha sido asignado todavia, id: " + id.toString());
         return new TurnoDTO(turno.getPaciente().getNombre() +" "+ turno.getPaciente().getApellido(),
                 turno.getOdontologo().getNombre() +" "+ turno.getOdontologo().getApellido(),turno.getFecha());
     }

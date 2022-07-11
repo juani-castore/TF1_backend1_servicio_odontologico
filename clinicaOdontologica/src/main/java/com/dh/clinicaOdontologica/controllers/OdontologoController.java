@@ -17,25 +17,25 @@ public class OdontologoController {
     OdontologoService odontologoService;
 
     @PostMapping
-    public ResponseEntity<Odontologo> registrarOdontologo(@RequestBody Odontologo odontologo){
+    public ResponseEntity<Odontologo> registrarOdontologo(@RequestBody Odontologo odontologo) {
         return ResponseEntity.ok(odontologoService.crearOdontologo(odontologo));
     }
 
-    // no funciona
+
     @GetMapping("/{id}")
-    public ResponseEntity<OdontologoDTO> buscarOdontologo(@PathVariable Long id){
+    public ResponseEntity<OdontologoDTO> buscarOdontologo(@PathVariable Long id) throws Exception{
         return ResponseEntity.ok(odontologoService.buscarOdontologo(id));
     }
 
-    // funciona, pero acordate de pasarle el id
+
     @PutMapping
-    public ResponseEntity<Odontologo> actualizarOdontologo(@RequestBody Odontologo odontologo){
+    public ResponseEntity<Odontologo> actualizarOdontologo(@RequestBody Odontologo odontologo) {
         return ResponseEntity.ok(odontologoService.actualizarOdontologo(odontologo));
     }
 
-    // no funcionaaaaaaaaaa
+
     @DeleteMapping("/{id}")
-    public void eliminarOdontologo(@PathVariable Long id){
+    public void eliminarOdontologo(@PathVariable Long id) throws Exception{
         odontologoService.eliminarOdontologo(id);
     }
 

@@ -18,12 +18,12 @@ public class TurnoController {
     TurnoService turnoService;
 
     @PostMapping
-    public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno){
+    public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno) {
         return ResponseEntity.ok(turnoService.crearTurno(turno));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TurnoDTO> buscarTurno(@PathVariable Long id){
+    public ResponseEntity<TurnoDTO> buscarTurno(@PathVariable Long id) throws Exception{
         return ResponseEntity.ok(turnoService.buscarTurno(id));
     }
 
@@ -33,7 +33,7 @@ public class TurnoController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarTurno(@PathVariable Long id){
+    public void eliminarTurno(@PathVariable Long id) throws Exception {
         turnoService.eliminarTurno(id);
     }
 

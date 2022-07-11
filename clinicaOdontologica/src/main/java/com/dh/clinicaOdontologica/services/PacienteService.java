@@ -1,6 +1,7 @@
 package com.dh.clinicaOdontologica.services;
 
 import com.dh.clinicaOdontologica.dto.PacienteDTO;
+import com.dh.clinicaOdontologica.exceptions.NotFoundException;
 import com.dh.clinicaOdontologica.models.Paciente;
 import com.dh.clinicaOdontologica.repositories.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,12 +31,16 @@ public class PacienteService {
         paciente.setFechaIngreso(pacienteRepository.findById(paciente.getId()).orElseThrow().getFechaIngreso());
         return guardarPaciente(paciente);
     }
-    public void eliminarPaciente(Long id){
+    public void eliminarPaciente(Long id) throws NotFoundException {
+        if (pacienteRepository.findById(id).isEmpty())
+            throw new NotFoundException("el paciente con id: " + id.toString() + " no esta registrado");
         pacienteRepository.deleteById(id);
+
     }
 
-    public PacienteDTO buscarPaciente(Long id){
-        System.out.println(mapper.convertValue(pacienteRepository.findById(id), PacienteDTO.class) + "----------------------------------");
+    public PacienteDTO buscarPaciente(Long id) throws NotFoundException {
+        if (pacienteRepository.findById(id).isEmpty())
+            throw new NotFoundException("el paciente con id: " + id.toString() + " no esta registrado");
         return mapper.convertValue(pacienteRepository.findById(id), PacienteDTO.class);
     }
     public List<PacienteDTO> listarPacientes(){
