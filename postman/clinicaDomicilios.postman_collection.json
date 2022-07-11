@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "e632e7ec-c350-4568-aec3-6dea926c9a1a",
+		"name": "clinicaDomicilios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18572507"
+	},
+	"item": [
+		{
+			"name": "listarDomicilios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/domicilios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"domicilios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarDomicilio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/domicilios/{9}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"domicilios",
+						"{9}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
